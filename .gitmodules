@@ -1,0 +1,12 @@
+[submodule "firmware/kmk/Adafruit_CircuitPython_NeoPixel"]
+	path = firmware/kmk/Adafruit_CircuitPython_NeoPixel
+	url = https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel.git
+[submodule "firmware/kmk/kmk_firmware"]
+	path = firmware/kmk/kmk_firmware
+	url = https://github.com/KMKfw/kmk_firmware.git
+[submodule "cad/out"]
+	path = cad/out
+	url = https://github.com/iovxw/hex98_cad_binary.git
+[submodule "firmware/kmk/out"]
+	path = firmware/kmk/out
+	url = https://github.com/iovxw/hex98_kmk_binary.git

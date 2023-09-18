@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "hex98"
+version = "0.1.0"
+description = ""
+authors = ["iovxw <iovxw@outlook.com>"]
+readme = "README.md"
+#packages = [{include = "hex98"}]
+
+[tool.poetry.scripts]
+build = "hex98:build"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+jupyter-cadquery = {version = "^3.5.0", extras = ["prod"]}
+build123d = {git = "https://github.com/gumyr/build123d.git"}
+
+# Override a valid version
+cadquery = "^2.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
