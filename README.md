@@ -37,6 +37,10 @@ The `keyboard_body` is 306mm*174.73mm, make sure your 3D printer is big enough
 
 `wrist_rest` is optional, print two if you need
 
+![](images/parts.png)
+
+***TBD***
+
 ## Firmware
 
 See [firmware/kmk](firmware/kmk)
