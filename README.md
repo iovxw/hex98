@@ -18,7 +18,7 @@
 
 ## Firmware
 
-See <firmware/kmk>
+See [firmware/kmk](firmware/kmk)
 
 ## How to enter dev mode after firmware flashed?
 
