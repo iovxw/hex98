@@ -29,15 +29,29 @@
 
 [ali]: https://www.aliexpress.us/item/3256803817805852.html
 
-## LED indicator
+## Build guide
 
-![](images/led.jpg)
+Download all step files from `cad/out`, print them
+
+The `keyboard_body` is 306mm*174.73mm, make sure your 3D printer is big enough
+
+`wrist_rest` is optional, print two if you need
 
 ## Firmware
 
 See [firmware/kmk](firmware/kmk)
 
 ## Q&A
+
+### What the indicator LEDs mean？
+
+![](images/led.jpg)
+
+Power LED is always on
+
+Current Layer RGB is off on default layer, yellow on second layer, green on third layer
+
+Color can be customized via https://github.com/iovxw/hex98/blob/5d3e64cad47163fc65e81f1292481ab168c750fa/firmware/kmk/main.py#L25
 
 ### How to enter dev mode after firmware flashed?
 
