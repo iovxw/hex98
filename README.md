@@ -2,6 +2,10 @@
 
 ![](images/hex98.jpg)
 
+## Finger Placement
+
+![](images/finger_placement.svg)
+
 ## BOM
 
 | Description      | Qty |
