@@ -25,7 +25,7 @@
 | ---------------- | --- |
 | M3*6 FHCS        | 11  |
 | MX Switchs       | 98  |
-| [YD-RP2040](ali) | 1   |
+| [YD-RP2040][ali] | 1   |
 
 [ali]: https://www.aliexpress.us/item/3256803817805852.html
 
