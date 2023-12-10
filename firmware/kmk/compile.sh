@@ -23,4 +23,4 @@ done
 
 cp boot.py out
 compile kb.py out
-cp main.py out
+cp code.py out
