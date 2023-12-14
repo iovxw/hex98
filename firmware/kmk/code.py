@@ -1,40 +1,8 @@
-from kmk.extensions.lock_status import LockStatus
-from kmk.extensions.media_keys import MediaKeys
-from kmk.keys import KC, make_key
-from kmk.modules.layers import Layers
+from kmk.keys import KC
 
-from kb import KMKKeyboard
+from kb import Hex98
 
-keyboard = KMKKeyboard()
-
-
-class LEDLockStatus(LockStatus):
-    def set_lock_leds(self):
-        if self.get_caps_lock():
-            keyboard.leds.set_brightness(100, leds=[0])
-        else:
-            keyboard.leds.set_brightness(0, leds=[0])
-
-    def after_hid_send(self, sandbox):
-        super().after_hid_send(sandbox)  # Critically important. Do not forget
-        if self.report_updated:
-            self.set_lock_leds()
-
-
-keyboard.extensions.append(LEDLockStatus())
-
-
-class RGBLayers(Layers):
-    last_top_layer = 0
-    hues = [(0, 0, 0), (20, 255, 255), (69, 255, 255)]
-
-    def after_hid_send(self, keyboard):
-        if keyboard.active_layers[0] != self.last_top_layer:
-            self.last_top_layer = keyboard.active_layers[0]
-            keyboard.rgb.set_hsv_fill(*self.hues[self.last_top_layer])
-
-
-keyboard.modules.append(RGBLayers())
+keyboard = Hex98()
 
 # flake8: noqa
 # fmt: off

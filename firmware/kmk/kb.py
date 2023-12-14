@@ -1,15 +1,47 @@
 import board
-import microcontroller
 
-from kmk.extensions.LED import LED
-from kmk.extensions.RGB import RGB
-from kmk.keys import KC
-from kmk.kmk_keyboard import KMKKeyboard as _KMKKeyboard
+from kmk.extensions.led import LED
+from kmk.extensions.rgb import RGB
+from kmk.extensions.lock_status import LockStatus
+from kmk.kmk_keyboard import KMKKeyboard
+from kmk.modules.layers import Layers
 
 from kmk.scanners import DiodeOrientation
+from kmk.scanners.keypad import MatrixScanner
 
 
-class KMKKeyboard(_KMKKeyboard):
+class LEDLockStatus(LockStatus):
+    def __init__(self, led):
+        self.led = led
+        super().__init__()
+
+    def set_lock_leds(self):
+        if self.get_caps_lock():
+            self.led.set_brightness(100, leds=[0])
+        else:
+            self.led.set_brightness(0, leds=[0])
+
+    def after_hid_send(self, sandbox):
+        super().after_hid_send(sandbox)  # Critically important. Do not forget
+        if self.report_updated:
+            self.set_lock_leds()
+
+
+class RGBLayers(Layers):
+    last_top_layer = 0
+
+    def __init__(self, rgb, layer_hues):
+        self.rgb = rgb
+        self.hues = layer_hues
+        super().__init__()
+
+    def after_hid_send(self, keyboard):
+        if keyboard.active_layers[0] != self.last_top_layer:
+            self.last_top_layer = keyboard.active_layers[0]
+            self.rgb.set_hsv_fill(*self.hues[self.last_top_layer])
+
+
+class Hex98(KMKKeyboard):
     col_pins = (
         board.GP0,
         board.GP1,
@@ -39,6 +71,12 @@ class KMKKeyboard(_KMKKeyboard):
         board.GP27,
     )
     diode_orientation = DiodeOrientation.ROW2COL
+    matrix = MatrixScanner(
+        column_pins=col_pins,
+        row_pins=row_pins,
+        columns_to_anodes=diode_orientation,
+        interval=0.05,
+    )
 
     # flake8: noqa
     # fmt: off
@@ -54,8 +92,11 @@ class KMKKeyboard(_KMKKeyboard):
                              125,                129,
     ]
 
-    leds = LED(led_pin=[board.LED], brightness=0)
-    _KMKKeyboard.extensions.append(leds)
+    led = LED(led_pin=[board.LED], brightness=0)
+    KMKKeyboard.extensions.append(led)
 
     rgb = RGB(pixel_pin=board.RGB, num_pixels=1, val_default=0)
-    _KMKKeyboard.extensions.append(rgb)
+    KMKKeyboard.extensions.append(rgb)
+
+    KMKKeyboard.extensions.append(LEDLockStatus(led))
+    KMKKeyboard.modules.append(RGBLayers(rgb, [(0, 0, 0), (20, 255, 255), (69, 255, 255)]))
