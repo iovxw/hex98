@@ -1,14 +1,22 @@
-import board, digitalio
 import time
+import board, digitalio
+import neopixel
 
 button = digitalio.DigitalInOut(board.BUTTON)
 button.switch_to_input(pull=digitalio.Pull.UP)
+pixels = neopixel.NeoPixel(board.NEOPIXEL, n=1, brightness=0.01)
+pixels.fill((255, 255, 255))
 
-# Wait pin init
-time.sleep(0.1)
+dev_mode = False
+for _ in range(100):
+    time.sleep(0.01)
+    if not button.value:
+        dev_mode = True
+        break
 
-# Disable devices only if button is not pressed.
-if button.value:
+if dev_mode:
+    pixels.fill((255, 0, 0))
+else:
     import storage, usb_cdc
 
     storage.disable_usb_drive()
