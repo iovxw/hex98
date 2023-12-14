@@ -1,6 +1,6 @@
 from kmk.keys import KC
 
-from kb import Hex98
+from keyboard import Hex98
 
 keyboard = Hex98()
 

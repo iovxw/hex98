@@ -22,5 +22,5 @@ do
 done
 
 cp boot.py out
-compile kb.py out
+compile keyboard.py out
 cp code.py out
