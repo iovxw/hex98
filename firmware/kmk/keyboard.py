@@ -75,7 +75,9 @@ class Hex98(KMKKeyboard):
         column_pins=col_pins,
         row_pins=row_pins,
         columns_to_anodes=diode_orientation,
-        interval=0.05,
+        # set to the lowest USB polling interval
+        # lsusb -vd 2e8a:102e | grep Interval
+        interval=0.008,
     )
 
     # flake8: noqa
