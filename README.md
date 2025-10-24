@@ -1,4 +1,4 @@
-![](images/hex98.jpg)
+![](images/hex98.webp)
 
 # hex98
 
@@ -44,6 +44,10 @@ The `keyboard_body` is 306mm*174.73mm, make sure your 3D printer is big enough
 ## Firmware
 
 See [firmware/kmk](firmware/kmk)
+
+## Alternative Keycaps
+
+![](images/alt_keycaps.webp)
 
 ## Q&A
 

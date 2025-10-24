@@ -28,17 +28,20 @@ class LEDLockStatus(LockStatus):
 
 
 class RGBLayers(Layers):
-    last_top_layer = 0
-
     def __init__(self, rgb, layer_hues):
         self.rgb = rgb
         self.hues = layer_hues
         super().__init__()
 
-    def after_hid_send(self, keyboard):
-        if keyboard.active_layers[0] != self.last_top_layer:
-            self.last_top_layer = keyboard.active_layers[0]
-            self.rgb.set_hsv_fill(*self.hues[self.last_top_layer])
+    def activate_layer(self, keyboard, layer, idx=None):
+        super().activate_layer(keyboard, layer, idx)
+        self.rgb.set_hsv_fill(*self.hues[layer])
+        self.rgb.show()
+
+    def deactivate_layer(self, keyboard, layer):
+        super().deactivate_layer(keyboard, layer)
+        self.rgb.set_hsv_fill(*self.hues[keyboard.active_layers[0]])
+        self.rgb.show()
 
 
 class Hex98(KMKKeyboard):
@@ -77,7 +80,8 @@ class Hex98(KMKKeyboard):
         columns_to_anodes=diode_orientation,
         # set to the lowest USB polling interval
         # lsusb -vd 2e8a:102e | grep Interval
-        interval=0.008,
+        interval=0.008/4,
+        debounce_threshold=4
     )
 
     # flake8: noqa
@@ -96,9 +100,8 @@ class Hex98(KMKKeyboard):
 
     led = LED(led_pin=[board.LED], brightness=0)
     KMKKeyboard.extensions.append(led)
+    KMKKeyboard.extensions.append(LEDLockStatus(led))
 
     rgb = RGB(pixel_pin=board.RGB, num_pixels=1, val_default=0)
     KMKKeyboard.extensions.append(rgb)
-
-    KMKKeyboard.extensions.append(LEDLockStatus(led))
     KMKKeyboard.modules.append(RGBLayers(rgb, [(0, 0, 0), (20, 255, 255), (69, 255, 255)]))
