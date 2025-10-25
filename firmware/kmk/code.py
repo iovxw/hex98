@@ -30,5 +30,8 @@ keyboard.keymap = [
     ]
 ]
 
+# HSV colors for each layer
+keyboard.layer_colors = [(0, 0, 0), (20, 255, 255), (69, 255, 255)]
+
 if __name__ == '__main__':
     keyboard.go()
