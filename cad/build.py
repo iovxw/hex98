@@ -5,8 +5,6 @@ from IPython.core.interactiveshell import InteractiveShell
 
 
 def exec_ipynb(path):
-    from IPython import get_ipython  # pyright: ignore
-
     shell = InteractiveShell.instance()
 
     # load the notebook object
@@ -17,8 +15,7 @@ def exec_ipynb(path):
         if cell.cell_type == "code":
             # transform the input to executable Python
             code = shell.input_transformer_manager.transform_cell(cell.source)
-            exec(code)
+            exec(code, globals=globals(), locals=globals())
 
 
-def build():
-    exec_ipynb("hex98.ipynb")
+exec_ipynb("hex98.ipynb")
