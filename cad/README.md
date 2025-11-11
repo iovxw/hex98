@@ -1,3 +1,3 @@
 # Build
 
-`poetry run build` and see *out*
+`pdm run build.py` and see *out*
