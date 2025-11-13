@@ -59,7 +59,7 @@ Power LED is always on
 
 Current Layer RGB is off on default layer, yellow on second layer, green on third layer
 
-Colors can be customized via https://github.com/iovxw/hex98/blob/5d3e64cad47163fc65e81f1292481ab168c750fa/firmware/kmk/main.py#L25
+Colors can be customized via https://github.com/iovxw/hex98/blob/95d79bd28a6102e14578006c19bc72cac9129d9f/firmware/kmk/code.py#L33-L34
 
 ### How to enter dev mode after firmware flashed?
 
