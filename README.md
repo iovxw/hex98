@@ -39,7 +39,55 @@ The `keyboard_body` is 306mm*174.73mm, make sure your 3D printer is big enough
 
 ![](images/parts.png)
 
-***TBD***
+### Hand wiring matrix
+
+Install all switchs:
+
+![](images/switch_installed.webp)
+
+Connect rows
+
+![](images/row.webp)
+
+Trim the diode anode to approximately 5mm
+
+![](images/cut_diode.webp)
+
+Solder the first, and the second
+
+![](images/first_diode.webp)
+
+This is what it looks like from the side:
+
+![](images/diode_side_view.webp)
+
+This method eliminates the need for insulation
+
+Then just repeat it:
+
+![](images/first_column.webp)
+
+![](images/half_column.webp)
+
+![](images/half_column_mirrored.webp)
+
+![](images/matrix.webp)
+
+Note the middle column, several diodes are used merely as wires
+
+Connect the matrix to the board as follows:
+
+![](images/wiring.webp)
+
+Solder the board-side wires first, then you can get creative with the routing
+
+![](images/wiring_finished.webp)
+
+Done
+
+![](images/done.webp)
+
+Note: This build uses keycap_alt and pcb_cover_alt
 
 ## Firmware
 
