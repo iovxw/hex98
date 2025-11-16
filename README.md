@@ -41,6 +41,8 @@ The `keyboard_body` is 306mm*174.73mm, make sure your 3D printer is big enough
 
 ### Hand wiring matrix
 
+<details><summary>Click to expand</summary>
+
 Install all switchs:
 
 ![](images/switch_installed.webp)
@@ -85,17 +87,17 @@ Solder the board-side wires first, then you can get creative with the routing
 
 Done
 
-![](images/done.webp)
-
-Note: This build uses keycap_alt and pcb_cover_alt
+</details>
 
 ## Firmware
 
 See [firmware/kmk](firmware/kmk)
 
-## Alternative Keycaps
+## Alternative keycaps and pcb_cover
 
-![](images/alt_keycaps.webp)
+![](images/alt.webp)
+
+See the `cad/out/*_alt.step`
 
 ## Q&A
 
@@ -112,3 +114,4 @@ Colors can be customized via https://github.com/iovxw/hex98/blob/95d79bd28a6102e
 ### How to enter dev mode after firmware flashed?
 
 ![](images/button.jpg)
+
